@@ -1,0 +1,29 @@
+.btn {
+    padding: 0.9375rem;
+    border: 0;
+    border-radius: 0.5rem;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-yellow {
+    border-bottom: 4px solid #998030;
+    background-color: var(--yellow);
+}
+
+.btn-black {
+    color: var(--white);
+    border-bottom: 4px solid #676262;
+    background-color: var(--black);
+}
+
+.button-press-animation {
+    animation: button-press 0.5s;
+}
+
+@keyframes button-press {
+    50% {
+        transform: translateY(5px);
+        border-bottom: 0;
+    }
+}
