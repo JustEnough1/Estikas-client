@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    place-items: start;
+    height: 100vh;
+}
+.page-center {
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.item {
+    flex: flex;
+    text-align: center;
+    padding: 10px;
+}
+.item-left {
+    flex: flex;
+    text-align: start;
+    padding: 10px;
+}
+
+.up-text-separator {
+    height: 20px;
+}
+
+.card-separator-up{
+    height: 46px;
+}
+
+.card-separator-down {
+    height: 20px;
+}
+
+.separator-buttons {
+    width: 10px;
+    height: 25px;
+}
+

@@ -8,7 +8,6 @@ interface IButtonProps {
     btnColor: "black" | "yellow";
     onClick: Function;
 }
-
 export default function Button(props: IButtonProps) {
     let [isAnimated, setIsAnimated] = useState<boolean>(false);
 
@@ -16,7 +15,6 @@ export default function Button(props: IButtonProps) {
         setIsAnimated(true);
         setTimeout(() => setIsAnimated(false), 500);
     };
-
     return (
         <button
             className={`btn btn-${props.btnColor} ${
