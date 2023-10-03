@@ -1,0 +1,10 @@
+.input {
+    padding: 0.625rem;
+    border-radius: 0.25rem;
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+}
+
+.input.full-width {
+    width: 100%;
+}
