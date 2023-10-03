@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from "react";
-import './Card.css';
-
-
+import React, { useState, useEffect } from "react";
+import "./Card.css";
 
 interface iInputProps {
     text: string;
@@ -10,41 +8,41 @@ interface iInputProps {
     textStyle?: string;
     onClick: Function;
 }
-export default function Card(props: iInputProps){
+export default function Card(props: iInputProps) {
     const [isPressed, setIsPressed] = useState(false);
-    useEffect(() =>{
-        let button = document.querySelector('.card-component');
-        button?.addEventListener('click',function(){
-            button?.classList.add('card-flip-animation');
-            setTimeout(function(){
+
+    useEffect(() => {
+        let button = document.querySelector(".card-component");
+        button?.addEventListener("click", function () {
+            button?.classList.add("card-flip-animation");
+            setTimeout(function () {
                 setIsPressed(false);
-                button?.classList.remove('card-flip-animation');
-            }, 1000)
+                button?.classList.remove("card-flip-animation");
+            }, 1000);
         });
-    }, [isPressed])
+    }, [isPressed]);
     return (
-        < button
-        onClick={() => {
-            props.onClick();
-        }}
-        className="card-component"
+        <button
+            onClick={() => {
+                props.onClick();
+            }}
+            className="card-component"
         >
             <p
-            className= {props.textStyle ? props.textStyle : "subtext-compponent"}
-            placeholder={props.subtext}
-            onClick={() => {
-                setIsPressed(true)
-            }}
+                className={
+                    props.textStyle ? props.textStyle : "subtext-compponent"
+                }
+                placeholder={props.subtext}
+                onClick={() => {
+                    setIsPressed(true);
+                }}
             >
-            {props.subtext ? props.subtext : 'Переведите слово:'}
+                {props.subtext ? props.subtext : "Переведите слово:"}
             </p>
 
-            <p
-            className="card-text-component"
-            placeholder={props.text}
-            >
-            {props.text}
+            <p className="card-text-component" placeholder={props.text}>
+                {props.text}
             </p>
         </button>
-    )
+    );
 }
