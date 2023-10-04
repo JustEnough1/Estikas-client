@@ -1,48 +1,43 @@
 import React, { useState, useEffect } from "react";
 import "./Card.css";
 
-interface iInputProps {
+interface IInputProps {
     text: string;
     subtext?: string;
     style?: React.CSSProperties;
     textStyle?: string;
     onClick: Function;
 }
-export default function Card(props: iInputProps) {
+export default function Card(props: IInputProps) {
     const [isPressed, setIsPressed] = useState(false);
 
-    useEffect(() => {
-        let button = document.querySelector(".card-component");
-        button?.addEventListener("click", function () {
-            button?.classList.add("card-flip-animation");
-            setTimeout(function () {
-                setIsPressed(false);
-                button?.classList.remove("card-flip-animation");
-            }, 1000);
-        });
-    }, [isPressed]);
+    const resetAnimation = () => {
+        setIsPressed(true);
+
+        setTimeout(() => {
+            setIsPressed(false);
+        }, 1000);
+    };
+
     return (
-        <button
+        <div
             onClick={() => {
+                resetAnimation();
                 props.onClick();
             }}
-            className="card-component"
+            className={`card-component d-flex flex-column align-items-center justify-content-center ${
+                isPressed ? "card-flip-animation" : ""
+            }`}
         >
             <p
                 className={
                     props.textStyle ? props.textStyle : "subtext-compponent"
                 }
-                placeholder={props.subtext}
-                onClick={() => {
-                    setIsPressed(true);
-                }}
             >
                 {props.subtext ? props.subtext : "Переведите слово:"}
             </p>
 
-            <p className="card-text-component" placeholder={props.text}>
-                {props.text}
-            </p>
-        </button>
+            <p className="card-text-component mt-4">{props.text}</p>
+        </div>
     );
 }

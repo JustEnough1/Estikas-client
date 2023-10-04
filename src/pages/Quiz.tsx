@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Card from "../components/Card";
 import Button from "../components/Button";
-import TextProgression from "../components/TextProgression";
 
 type word = { est: string; rus: string };
 
@@ -38,19 +37,27 @@ function Quiz(props: IQuizProps) {
 
     return (
         <div className="container" style={{ height: "100vh" }}>
-            <div className="row" style={{ width: "100%" }}>
+            <div className="row justify-content-center mt-5">
                 <div className="col-lg-6 col-12">
-                    <div className="item-left">Вернуться</div>
+                    <a
+                        href="#"
+                        style={{
+                            textDecoration: "none",
+                            color: "var(--black)",
+                        }}
+                    >
+                        <i className="bi bi-arrow-left"></i> Вернуться
+                    </a>
                 </div>
-                <div className="col-12 d-flex justify-content-center">
-                    <TextProgression
-                        progression={count.toString()}
-                        progression_goal={maxCount.toString()}
-                        progression_separator="/"
-                        text_theme={props.topic}
-                    />
+            </div>
+            <div className="row justify-content-center my-5">
+                <div className="col-lg-6 col-12">
+                    <h4>Тема: {props.topic}</h4>
+                    <h6 className={"mt-2"}>{`${count} / ${maxCount}`}</h6>
                 </div>
-                <div className="col-12 d-flex justify-content-center flex-grow-1">
+            </div>
+            <div className="row justify-content-center">
+                <div className="col-lg-6 col-12">
                     <Card
                         text={isPushed ? currentWord.rus : currentWord.est}
                         onClick={() => {
@@ -58,7 +65,10 @@ function Quiz(props: IQuizProps) {
                         }}
                     />
                 </div>
-                <div className="col-lg-4 col-12 d-flex align-items-center  justify-content-center">
+            </div>
+
+            <div className="row justify-content-center mt-5">
+                <div className="col-lg-3 col-12 mb-lg-0 mb-3">
                     <Button
                         btnColor="yellow"
                         text="Помню"
@@ -67,7 +77,8 @@ function Quiz(props: IQuizProps) {
                         }}
                         style={{ width: "100%" }}
                     />
-                    <div className="separator-buttons"></div>
+                </div>
+                <div className="col-lg-3 col-12">
                     <Button
                         btnColor="black"
                         text="Не помню"

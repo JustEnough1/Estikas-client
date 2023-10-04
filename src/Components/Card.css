@@ -1,43 +1,31 @@
-.border {
-    border: 2px solid #000;
-    padding: 10px;
+.card-component {
+    border-radius: 0.9375rem;
+    background: #fff;
+    box-shadow: 0px -3px 0px 0px #cecece66 inset, 0px 7px 13px -3px #cecece66,
+        0px 2px 4px 0px #cecece66;
+    width: 100%;
+    min-height: 200px;
 }
-
-.big-border{
-    border: 20px solid #000;
-    padding: 100px;
-}
-
-.card-component{
-    box-shadow: 0px 3px 3px #000;
-    border-radius: 35px;
-    border-color: azure;
-    background-color: rgb(255, 255, 255);
-    width: 378px;
-    height: 300px;
-}
-.card-text-component{
+.card-text-component {
     font-size: 49px;
     color: #535353;
 }
-.subtext-compponent{
+.subtext-compponent {
     font-size: 20px;
-    color: #000000
+    color: #00000075;
 }
-.card-flip-animation{
+.card-flip-animation {
     animation: flip 1s ease-in-out;
 }
 
-@keyframes flip{
+@keyframes flip {
     from {
-        transform: 
-        rotateY(0deg)
-    } 50% {
-        transform: 
-        rotateY(90deg)
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
     }
     to {
-        transform: 
-        rotateY(0deg)
+        transform: rotateY(0deg);
     }
 }

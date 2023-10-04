@@ -11,7 +11,7 @@ function App() {
                 { est: "Head", rus: "Хорошо" },
                 { est: "Oluline", rus: "Важно" },
             ]}
-            topic={"A1 LEVEL"}
+            topic={"Уровень A1"}
         />
     );
 }
