@@ -13,7 +13,6 @@ export default function Card(props: IInputProps) {
 
     const resetAnimation = () => {
         setIsPressed(true);
-
         setTimeout(() => {
             setIsPressed(false);
         }, 1000);
