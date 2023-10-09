@@ -13,7 +13,6 @@ interface IQuizProps {
 function Quiz(props: IQuizProps) {
     const words = props.words;
 
-    let [wordState, setWordState] = useState('est');
     let maxCount = words.length;
     let [currentWord, setCurrentWord] = useState(words[0]);
     let [count, setCount] = useState(0);
@@ -21,12 +20,6 @@ function Quiz(props: IQuizProps) {
 
     let HandleClick = () => {
         setTimeout(() => {
-            if(wordState == 'rus'){
-                setWordState('est')
-                nextWord()
-            } else if (wordState == 'est' ){
-                setWordState('rus');
-            }
             setIsPushed(!isPushed);
         }, 500);
     };
@@ -90,7 +83,7 @@ function Quiz(props: IQuizProps) {
                         btnColor="black"
                         text="Не помню"
                         onClick={() => {
-                            HandleClick();
+                            nextWord();
                         }}
                         style={{ width: "100%" }}
                     />

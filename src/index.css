@@ -64,6 +64,10 @@ h6 {
     line-height: 120%;
 }
 
+i.bi {
+    font-size: 2em;
+}
+
 .logo {
     filter: grayscale(1);
     transition: all 0.5s;
