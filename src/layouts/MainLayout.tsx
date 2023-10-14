@@ -22,7 +22,7 @@ export default function MainLayout({
                 <div className="col-12">
                     <header className="d-flex flex-column align-items-center justify-content-center">
                         <i className={headerIconClassName}></i>
-                        <h2>{headerTitle}</h2>
+                        <h2 style={{textAlign: 'center'}} >{headerTitle}</h2>
                     </header>
                 </div>
             </div>
