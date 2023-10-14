@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 
 import "./Home.css";
 import SelectionCard from "../components/SelectionCard";
+import Quiz from "../components/Quiz";
 
 export default function Home() {
+
+    let [hideQuiz, setHideQuiz] = useState(true);
+
     return (
+        <>
+        <Quiz setIsHidden={setHideQuiz} isHidden={hideQuiz} words={[{est: 'Tere', rus: 'Привет'}]} topic={"Общение"} />
         <MainLayout
             headerTitle={"Здравствуй *Имя*"}
             headerIconClassName={"bi bi-house"}
@@ -16,12 +22,17 @@ export default function Home() {
                     <h5>Подборки слов</h5>
                     <div className="d-flex selections">
                         <SelectionCard
+                            clickAction={() => {
+                                setHideQuiz(false);
+                            }}
                             iconClassName={"bi bi-trophy-fill"}
                             title={"Топ 100 глаголов"}
+                            
                         />
                     </div>
                 </div>
             </div>
         </MainLayout>
+        </>
     );
 }

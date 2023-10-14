@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-import Card from "../components/Card";
-import Button from "../components/Button";
+import Card from "./Card";
+import Button from "./Button";
 
 type word = { est: string; rus: string };
 
 interface IQuizProps {
     words: word[];
     topic: string;
+    isHidden: boolean;
+    setIsHidden: Function;
 }
+
+
 
 function Quiz(props: IQuizProps) {
     const words = props.words;
-
     let maxCount = words.length;
     let [currentWord, setCurrentWord] = useState(words[0]);
     let [count, setCount] = useState(0);
@@ -35,8 +38,9 @@ function Quiz(props: IQuizProps) {
         nextWord();
     }, []);
 
+
     return (
-        <div className="container" style={{ height: "100vh" }}>
+        <div className="container" style={{ height: "100vh" , display: props.isHidden == true ? "none":""}}>
             <div className="row justify-content-center mt-5">
                 <div className="col-lg-6 col-12">
                     <a
@@ -44,9 +48,16 @@ function Quiz(props: IQuizProps) {
                         style={{
                             textDecoration: "none",
                             color: "var(--black)",
+                            display: "flex",
+                            alignItems: "center"
+                        }}
+                        onClick={() => {
+                            props.setIsHidden(true)
                         }}
                     >
-                        <i className="bi bi-arrow-left"></i> Вернуться
+                        <i className="bi bi-arrow-left"
+
+                        ></i> Вернуться
                     </a>
                 </div>
             </div>
