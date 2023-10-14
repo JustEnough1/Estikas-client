@@ -4,10 +4,12 @@
     border-radius: 0.5rem;
     transition: all 0.4s ease-in-out;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .btn-yellow {
     border-bottom: 4px solid #998030;
+    color: var(--black);
     background-color: var(--yellow);
 }
 
@@ -24,6 +26,6 @@
 @keyframes button-press {
     50% {
         transform: translateY(5px);
-        border-bottom: 0;
+        border-color: transparent;
     }
 }

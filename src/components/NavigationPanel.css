@@ -1,0 +1,23 @@
+.navigation-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    padding: 1.5em 6em;
+}
+
+.navigation-panel .navigation-tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-panel .navigation-tab:not(:last-of-type) {
+    margin-right: 2.5em;
+}
+
+i.active-tab {
+    color: var(--yellow);
+}
