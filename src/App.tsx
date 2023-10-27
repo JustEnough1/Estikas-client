@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./App.css";
 import Home from "./pages/Home";
-import PersinalPage from "./pages/personalPage";
 
 function App() {
-    return <PersinalPage User={{
-        Name: "Григорий",
-        LastName: "Бырокав"
-    }} />;
+   return <div>
+        <Home/>
+    </div>
 }
 export default App;

@@ -11,7 +11,9 @@ export default function Home() {
 
     return (
         <>
-        <Quiz setIsHidden={setHideQuiz} isHidden={hideQuiz} words={[{est: 'Tere', rus: 'Привет'}]} topic={"Общение"} />
+        <Quiz setIsHidden={setHideQuiz} isHidden={hideQuiz} words={[{est: 'Tere', rus: 'Привет'},
+         {est: 'Head Aega', rus: 'До свидания'}, {est: 'Kokk', rus: 'Повар'},
+          {est: 'Piritus', rus: 'Розжиг'} ,{est: 'Juba', rus: 'Уже'}]} topic={"Общение"} />
         <MainLayout
             headerTitle={"Здравствуй *Имя*"}
             headerIconClassName={"bi bi-house"}

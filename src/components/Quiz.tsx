@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
 import Button from "./Button";
+import {CreateSelection} from "../algorithms/card-selection"
 
 type word = { est: string; rus: string };
 
@@ -12,14 +13,14 @@ interface IQuizProps {
     setIsHidden: Function;
 }
 
-
-
 function Quiz(props: IQuizProps) {
     const words = props.words;
     let maxCount = words.length;
     let [currentWord, setCurrentWord] = useState(words[0]);
     let [count, setCount] = useState(0);
     let [isPushed, setIsPushed] = useState(false);
+    let selection: CreateSelection = new CreateSelection();
+    
 
     let HandleClick = () => {
         setTimeout(() => {
@@ -29,8 +30,10 @@ function Quiz(props: IQuizProps) {
 
     function nextWord() {
         if (count < maxCount) {
-            setCount(count + 1);
-            setCurrentWord(words[count]);
+            if(selection.cancelledRemoveFromPack){
+                setCount(count + 1);
+            }
+            setCurrentWord(selection.getCurrentWord());
         }
     }
 
@@ -53,6 +56,7 @@ function Quiz(props: IQuizProps) {
                         }}
                         onClick={() => {
                             props.setIsHidden(true)
+                            selection.createPacks(words);
                         }}
                     >
                         <i className="bi bi-arrow-left"
@@ -84,7 +88,11 @@ function Quiz(props: IQuizProps) {
                         btnColor="yellow"
                         text="Помню"
                         onClick={() => {
+                            selection.updateRandomWord(true);
                             nextWord();
+                            if(count >= 10){
+                                selection.updateRandomPack();
+                            }
                         }}
                         style={{ width: "100%" }}
                     />
@@ -94,6 +102,7 @@ function Quiz(props: IQuizProps) {
                         btnColor="black"
                         text="Не помню"
                         onClick={() => {
+                            selection.updateRandomWord(false);
                             nextWord();
                         }}
                         style={{ width: "100%" }}
