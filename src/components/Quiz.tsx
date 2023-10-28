@@ -4,8 +4,6 @@ import Card from "./Card";
 import Button from "./Button";
 import { useSelection } from "../Hooks/useSelection";
 
-type word = { est: string; rus: string };
-
 interface IQuizProps {
     words: word[];
     topic: string;

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-type word = { est: string; rus: string };
-
 // export class CreateSelection {
 
 //     packList: Array<Array<word>> = new Array<Array<word>>();
