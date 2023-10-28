@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
 import Button from "./Button";
-import {useSelection} from "../Hooks/useSelection"
+import { useSelection } from "../Hooks/useSelection";
 
 type word = { est: string; rus: string };
 
@@ -13,27 +13,24 @@ interface IQuizProps {
     setIsHidden: Function;
 }
 
-
-
 function Quiz(props: IQuizProps) {
     const words = props.words;
     let maxCount = words.length;
-    let [currentWord, setCurrentWord] = useState(words[0]);
     let [count, setCount] = useState(0);
     let [isPushed, setIsPushed] = useState(false);
-    let {currentWordPack, nextPack} = useSelection(words)
-    
-    
+    let [currentWordPack, currentWord, removeRememberedWord] =
+        useSelection(words);
 
-    let HandleClick = () => {
+    let flipCard = () => {
         setTimeout(() => {
             setIsPushed(!isPushed);
         }, 500);
     };
 
-    function nextWord() {
+    function nextWord(remembered: boolean = false) {
         if (count < maxCount) {
-            nextPack();
+            if (remembered) removeRememberedWord(currentWord);
+
             setCount(count + 1);
         }
     }
@@ -42,9 +39,14 @@ function Quiz(props: IQuizProps) {
         nextWord();
     }, []);
 
-
     return (
-        <div className="container" style={{ height: "100vh" , display: props.isHidden == true ? "none":""}}>
+        <div
+            className="container"
+            style={{
+                height: "100vh",
+                display: props.isHidden == true ? "none" : "",
+            }}
+        >
             <div className="row justify-content-center mt-5">
                 <div className="col-lg-6 col-12">
                     <a
@@ -53,15 +55,13 @@ function Quiz(props: IQuizProps) {
                             textDecoration: "none",
                             color: "var(--black)",
                             display: "flex",
-                            alignItems: "center"
+                            alignItems: "center",
                         }}
                         onClick={() => {
-                            props.setIsHidden(true)
+                            props.setIsHidden(true);
                         }}
                     >
-                        <i className="bi bi-arrow-left"
-
-                        ></i> Вернуться
+                        <i className="bi bi-arrow-left"></i> Вернуться
                     </a>
                 </div>
             </div>
@@ -76,6 +76,7 @@ function Quiz(props: IQuizProps) {
                     <Card
                         text={isPushed ? currentWord.rus : currentWord.est}
                         onClick={() => {
+                            flipCard();
                         }}
                     />
                 </div>
@@ -87,8 +88,7 @@ function Quiz(props: IQuizProps) {
                         btnColor="yellow"
                         text="Помню"
                         onClick={() => {
-                            if(count >= 10){
-                            }
+                            nextWord(true);
                         }}
                         style={{ width: "100%" }}
                     />
@@ -98,6 +98,7 @@ function Quiz(props: IQuizProps) {
                         btnColor="black"
                         text="Не помню"
                         onClick={() => {
+                            nextWord(false);
                         }}
                         style={{ width: "100%" }}
                     />

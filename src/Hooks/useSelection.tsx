@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react";
 
 type word = { est: string; rus: string };
 
@@ -47,7 +47,7 @@ type word = { est: string; rus: string };
 //         }
 //         this.currentWord = word;
 //     }
-    
+
 //     getCurrentWord(): word{
 //         this.cancelledRemoveFromPack = false;
 //         return this.currentWord;
@@ -57,9 +57,10 @@ type word = { est: string; rus: string };
 //         return this.cancelledRemoveFromPack;
 //     }
 // }
-import { useState } from "react";
 
-export function useSelection(wordList: word[]) {
+export function useSelection(
+    wordList: word[]
+): [word[], word, (currentWord: word) => void] {
     const wordPackSize = 2;
 
     // Разбиваем исходный список на пакеты слов
@@ -70,7 +71,23 @@ export function useSelection(wordList: word[]) {
 
     // Используем состояние для отслеживания текущего пакета и его индекса
     const [currentWordPackIndex, setCurrentWordPackIndex] = useState(0);
-    const [currentWordPack, setCurrentWordPack] = useState(wordPacks[currentWordPackIndex]);
+    const [currentWordPack, setCurrentWordPack] = useState(
+        wordPacks[currentWordPackIndex]
+    );
+    const [currentWord, setCurrentWord] = useState(currentWordPack[0]);
+
+    useEffect(() => {
+        setCurrentWord(currentWordPack[0]);
+    }, [currentWordPack]);
+
+    // Удаляет слово из актуального массива слов
+    function removeRememberedWord(currentWord: word) {
+        if (currentWordPack.length === 1) return nextPack();
+
+        setCurrentWordPack(
+            currentWordPack.filter((word) => word !== currentWord)
+        );
+    }
 
     // Функция для перехода к следующему пакету
     function nextPack() {
@@ -80,9 +97,5 @@ export function useSelection(wordList: word[]) {
         }
     }
 
-    return { currentWordPack, nextPack };
+    return [currentWordPack, currentWord, removeRememberedWord];
 }
-
-//Список слов --> Должен поделиться на пачки по 10 слов {Перепирается каждое слово отдельно, добавляется в мусорный список, 
-//если список нужной наполненности он добавляется в основной список с пачками, очищается и заполняется по новой} --> 
-//
