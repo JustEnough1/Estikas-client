@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
 import Button from "./Button";
-import { useSelection } from "../Hooks/useSelection";
+import { useSelection } from "../hooks/useSelection";
+import useNextWord from "../hooks/useNextWord";
 
 interface IQuizProps {
     words: word[];
@@ -13,11 +14,15 @@ interface IQuizProps {
 
 function Quiz(props: IQuizProps) {
     const words = props.words;
-    let maxCount = words.length;
-    let [count, setCount] = useState(0);
+
     let [isPushed, setIsPushed] = useState(false);
-    let [currentWordPack, currentWord, removeRememberedWord] =
-        useSelection(words);
+    let { currentSelection, nextSelection } = useSelection(words, 3);
+    let { currentWord, nextWord } = useNextWord(currentSelection);
+
+    let [countDone, setCountDone] = useState(1);
+    let [countLeft, setCountLeft] = useState(currentSelection.length);
+
+    let [isFinished, setIsFinished] = useState(false);
 
     let flipCard = () => {
         setTimeout(() => {
@@ -25,17 +30,19 @@ function Quiz(props: IQuizProps) {
         }, 500);
     };
 
-    function nextWord(remembered: boolean = false) {
-        if (count < maxCount) {
-            if (remembered) removeRememberedWord(currentWord);
-
-            setCount(count + 1);
+    const updateCounter = () => {
+        if (countDone === countLeft) {
+            setCountDone(1);
+            nextSelection();
+            return;
         }
-    }
+        setCountDone(countDone + 1);
+    };
 
     useEffect(() => {
-        nextWord();
-    }, []);
+        if (currentSelection.length === 0) setIsFinished(true);
+        setCountLeft(currentSelection.length);
+    }, [currentSelection]);
 
     return (
         <div
@@ -63,45 +70,67 @@ function Quiz(props: IQuizProps) {
                     </a>
                 </div>
             </div>
-            <div className="row justify-content-center my-5">
-                <div className="col-lg-6 col-12">
-                    <h4>Тема: {props.topic}</h4>
-                    <h6 className={"mt-2"}>{`${count} / ${maxCount}`}</h6>
+            {isFinished && (
+                <div className="row justify-content-center my-5">
+                    <div className="col-lg-6 col-12">
+                        <h4 className="mx-auto">
+                            Тема "{props.topic}" пройдена!
+                        </h4>
+                    </div>
                 </div>
-            </div>
-            <div className="row justify-content-center">
-                <div className="col-lg-6 col-12">
-                    <Card
-                        text={isPushed ? currentWord.rus : currentWord.est}
-                        onClick={() => {
-                            flipCard();
-                        }}
-                    />
-                </div>
-            </div>
+            )}
+            {currentWord && (
+                <>
+                    <div className="row justify-content-center my-5">
+                        <div className="col-lg-6 col-12">
+                            <h4>Тема: {props.topic}</h4>
+                            <h6
+                                className={"mt-2"}
+                            >{`${countDone} / ${countLeft}`}</h6>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center">
+                        <div className="col-lg-6 col-12">
+                            {currentWord && (
+                                <Card
+                                    text={
+                                        isPushed
+                                            ? currentWord.rus
+                                            : currentWord.est
+                                    }
+                                    onClick={() => {
+                                        flipCard();
+                                    }}
+                                />
+                            )}
+                        </div>
+                    </div>
 
-            <div className="row justify-content-center mt-5">
-                <div className="col-lg-3 col-12 mb-lg-0 mb-3">
-                    <Button
-                        btnColor="yellow"
-                        text="Помню"
-                        onClick={() => {
-                            nextWord(true);
-                        }}
-                        style={{ width: "100%" }}
-                    />
-                </div>
-                <div className="col-lg-3 col-12">
-                    <Button
-                        btnColor="black"
-                        text="Не помню"
-                        onClick={() => {
-                            nextWord(false);
-                        }}
-                        style={{ width: "100%" }}
-                    />
-                </div>
-            </div>
+                    <div className="row justify-content-center mt-5">
+                        <div className="col-lg-3 col-12 mb-lg-0 mb-3">
+                            <Button
+                                btnColor="yellow"
+                                text="Помню"
+                                onClick={() => {
+                                    updateCounter();
+                                    nextWord(true);
+                                }}
+                                style={{ width: "100%" }}
+                            />
+                        </div>
+                        <div className="col-lg-3 col-12">
+                            <Button
+                                btnColor="black"
+                                text="Не помню"
+                                onClick={() => {
+                                    nextWord(false);
+                                }}
+                                style={{ width: "100%" }}
+                            />
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
