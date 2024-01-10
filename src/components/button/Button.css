@@ -1,16 +1,18 @@
 .btn {
-    padding: 0.9375rem;
-    border: 0;
-    border-radius: 0.5rem;
-    transition: all 0.4s ease-in-out;
     cursor: pointer;
+    display: flex;
+    padding: 0.9375rem 1.5625rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    border: 0;
     font-size: 16px;
 }
 
-.btn-yellow {
-    border-bottom: 4px solid #998030;
-    color: var(--black);
-    background-color: var(--yellow);
+.btn-blue {
+    border-bottom: 4px solid #325cc8;
+    color: var(--white);
+    background-color: var(--blue);
 }
 
 .btn-black {

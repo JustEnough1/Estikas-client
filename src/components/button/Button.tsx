@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 import "./Button.css";
 
 interface IButtonProps {
     text: string;
     style?: React.CSSProperties;
-    btnColor: "black" | "yellow";
+    btnColor: "black" | "blue";
     onClick: Function;
+    iconRenderer?: () => ReactNode;
 }
-export default function Button(props: IButtonProps) {
+export default function Button({
+    text,
+    style,
+    btnColor,
+    onClick,
+    iconRenderer,
+}: IButtonProps) {
     let [isAnimated, setIsAnimated] = useState<boolean>(false);
 
     const setAnimation = () => {
@@ -17,16 +24,17 @@ export default function Button(props: IButtonProps) {
     };
     return (
         <button
-            className={`btn btn-${props.btnColor} ${
+            className={`btn btn-${btnColor} ${
                 isAnimated ? "button-press-animation" : ""
             }`}
-            style={props.style}
+            style={style}
             onClick={() => {
-                props.onClick();
+                onClick();
                 setAnimation();
             }}
         >
-            {props.text}
+            {iconRenderer && iconRenderer()}
+            {text}
         </button>
     );
 }

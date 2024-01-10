@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
-import Button from "./Button";
+import Button from "./button/Button";
 import { useSelection } from "../hooks/useSelection";
 import useNextWord from "../hooks/useNextWord";
 
@@ -109,7 +109,7 @@ function Quiz(props: IQuizProps) {
                     <div className="row justify-content-center mt-5">
                         <div className="col-lg-3 col-12 mb-lg-0 mb-3">
                             <Button
-                                btnColor="yellow"
+                                btnColor="blue"
                                 text="Помню"
                                 onClick={() => {
                                     updateCounter();
