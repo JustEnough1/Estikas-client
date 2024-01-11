@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Card from "./Card";
+import Card from "./card/Card";
 import Button from "./button/Button";
 import { useSelection } from "../hooks/useSelection";
 import useNextWord from "../hooks/useNextWord";

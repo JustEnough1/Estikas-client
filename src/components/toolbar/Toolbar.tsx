@@ -1,8 +1,7 @@
 import React from "react";
-
-import "./Toolbar.css";
 import Button from "../button/Button";
 import Input from "../input/Input";
+import "./Toolbar.css";
 
 export default function Toolbar() {
     return (
