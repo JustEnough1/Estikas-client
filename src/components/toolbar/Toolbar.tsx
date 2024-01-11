@@ -6,7 +6,7 @@ import "./Toolbar.css";
 export default function Toolbar() {
     return (
         <div className="row toolbar mt-4">
-            <div className="col-lg-8 col-12 mb-lg-0 mb-4">
+            <div className="col-lg-8 col-12 mb-lg-0 mb-4 focus">
                 <Input placeholder={"Поиск"} type={"text"} />
             </div>
             <div className="col-lg-2 col-6">
