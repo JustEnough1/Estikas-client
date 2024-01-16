@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from "react";
-import "./MainLayout.css";
 import Sidebar from "../components/sidebar/Sidebar";
+import Overlay from "../components/overlay/Overlay";
+
+import "./MainLayout.css";
 
 interface IMainLayoutProps {
     children: ReactNode;
@@ -8,9 +10,11 @@ interface IMainLayoutProps {
 
 export default function MainLayout({ children }: IMainLayoutProps) {
     let [sidebarIsVisible, setSidebarIsVisible] = useState(false);
+    let [showOverlay, setShowOverlay] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarIsVisible(!sidebarIsVisible);
+        setShowOverlay(!showOverlay);
     };
 
     return (
@@ -20,12 +24,12 @@ export default function MainLayout({ children }: IMainLayoutProps) {
                     <i className="bi bi-list" onClick={toggleSidebar}></i>
 
                     <Sidebar
+                        toggleVisibility={toggleSidebar}
                         isVisible={sidebarIsVisible}
-                        setIsVisible={setSidebarIsVisible}
                     />
                 </nav>
             </div>
-            {sidebarIsVisible && <div className="sidebar-open-overlay"> </div>}
+            {showOverlay && <Overlay />}
 
             {children}
         </div>

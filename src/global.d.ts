@@ -1,1 +1,1 @@
-type word = { est: string; rus: string };
+type TextWithTranslations = { estonian: string; russian: string };

@@ -1,7 +1,7 @@
 import React from "react";
+import Tag from "../tag/Tag";
 
 import "./SelectionCard.css";
-import Tag from "../tag/Tag";
 
 interface ISelectionCardProps {
     title: string;

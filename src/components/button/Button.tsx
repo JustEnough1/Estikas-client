@@ -2,17 +2,26 @@ import React, { ReactNode, useState } from "react";
 
 import "./Button.css";
 
+type ButtonColors =
+    | "black"
+    | "blue"
+    | "black-outline"
+    | "blue-outline"
+    | "danger"
+    | "danger-outline"
+    | "default";
+
 interface IButtonProps {
     text: string;
     style?: React.CSSProperties;
-    btnColor: "black" | "blue";
+    btnColor?: ButtonColors;
     onClick: Function;
     iconRenderer?: () => ReactNode;
 }
 export default function Button({
     text,
     style,
-    btnColor,
+    btnColor = "default",
     onClick,
     iconRenderer,
 }: IButtonProps) {
@@ -24,7 +33,7 @@ export default function Button({
     };
     return (
         <button
-            className={`btn btn-${btnColor} ${
+            className={`btn btn--${btnColor} ${
                 isAnimated ? "button-press-animation" : ""
             }`}
             style={style}

@@ -7,18 +7,63 @@
     border-radius: 0.25rem;
     border: 0;
     font-size: 16px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
 }
 
-.btn-blue {
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn--default {
+    color: var(--black);
+    background-color: transparent;
+}
+
+.btn--blue {
     border-bottom: 4px solid #325cc8;
     color: var(--white);
     background-color: var(--blue);
 }
-
-.btn-black {
+.btn--black {
     color: var(--white);
     border-bottom: 4px solid #676262;
     background-color: var(--black);
+}
+.btn--danger {
+    color: var(--white);
+    border-bottom: 4px solid #651a1f;
+    background-color: var(--danger);
+}
+
+.btn--blue-outline {
+    color: var(--blue);
+    background: transparent;
+    border: 1px solid var(--blue);
+}
+.btn--black-outline {
+    color: var(--black);
+    background: transparent;
+    border: 1px solid var(--black);
+}
+.btn--danger-outline {
+    color: var(--danger);
+    background: transparent;
+    border: 1px solid var(--danger);
+}
+
+.btn--blue-outline:hover {
+    color: var(--white);
+    background-color: var(--blue);
+}
+.btn--black-outline:hover,
+.btn--default:hover {
+    color: var(--white);
+    background-color: var(--black);
+}
+.btn--danger-outline:hover {
+    color: var(--white);
+    background-color: var(--danger);
 }
 
 .button-press-animation {

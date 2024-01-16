@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-export default function useNextWord(wordList: word[]) {
+export default function useNextWord(wordList: TextWithTranslations[]) {
     let [currentWord, setCurrentWord] = useState(wordList[0]);
-    let [currentWordList, setCurrentWordList] = useState<word[]>(wordList);
+    let [currentWordList, setCurrentWordList] =
+        useState<TextWithTranslations[]>(wordList);
 
     useEffect(() => {
         setCurrentWordList(wordList);

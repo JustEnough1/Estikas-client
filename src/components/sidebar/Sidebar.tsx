@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 interface ISidebarProps {
     isVisible: boolean;
-    setIsVisible: Function;
+    toggleVisibility: Function;
 }
 
-export default function Sidebar({ isVisible, setIsVisible }: ISidebarProps) {
+export default function Sidebar({
+    isVisible,
+    toggleVisibility,
+}: ISidebarProps) {
     const [isMovedIn, setIsMovedIn] = useState(!isVisible);
 
     const toggleSidebar = () => {
@@ -14,11 +18,10 @@ export default function Sidebar({ isVisible, setIsVisible }: ISidebarProps) {
             setIsMovedIn(false);
             return setTimeout(() => {
                 setIsMovedIn(true);
-                setIsVisible(false);
+                toggleVisibility();
             }, 500);
         }
-
-        setIsVisible(!isVisible);
+        toggleVisibility();
     };
 
     return (
@@ -35,8 +38,12 @@ export default function Sidebar({ isVisible, setIsVisible }: ISidebarProps) {
                     <i className="bi bi-x-lg" onClick={toggleSidebar}></i>
 
                     <ul>
-                        <li>Главная</li>
-                        <li>Настройки</li>
+                        <li>
+                            <Link to={"/"}>Главная</Link>
+                        </li>
+                        <li>
+                            <Link to={"/settings"}>Настройки</Link>
+                        </li>
                     </ul>
                 </div>
             )}

@@ -1,8 +1,11 @@
 import { useState } from "react";
 
-export function useSelection(wordList: word[], selectionSize: number = 5) {
+export function useSelection(
+    wordList: TextWithTranslations[],
+    selectionSize: number = 5
+) {
     // Разбиваем исходный список на подборки слов
-    const selectionsList: word[][] = [];
+    const selectionsList: TextWithTranslations[][] = [];
     for (let index = 0; index < wordList.length; index += selectionSize) {
         selectionsList.push(wordList.slice(index, index + selectionSize));
     }

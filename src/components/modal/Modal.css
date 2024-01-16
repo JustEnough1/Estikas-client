@@ -1,0 +1,43 @@
+.modal {
+    z-index: 100;
+    background-color: var(--white);
+    padding: 3.125rem 1.5625rem;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modal-popup 0.3s ease-in-out;
+}
+
+.modal__header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dedede;
+}
+
+.modal__header i {
+    cursor: pointer;
+}
+
+.modal__body {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 50%;
+}
+
+.modal__footer {
+    flex-shrink: 0;
+}
+
+@keyframes modal-popup {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

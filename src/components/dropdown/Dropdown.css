@@ -1,0 +1,24 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown__arrow {
+    cursor: pointer;
+}
+
+.dropdown__options {
+    margin-top: 15px;
+    transition: max-height 0.5s ease-in-out;
+    height: 0px;
+    overflow: hidden;
+}
+
+.dropdown__options input[type="checkbox"] {
+    width: 2em;
+    height: 2em;
+    margin: 5px 0;
+}
+
+.dropdown__options--active {
+    height: fit-content;
+}

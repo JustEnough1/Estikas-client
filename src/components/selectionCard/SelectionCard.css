@@ -3,7 +3,6 @@
     padding: 3.125rem 1.5625rem;
     flex-wrap: wrap;
     border-radius: 0.5rem;
-
     color: white;
     gap: 32px;
     padding: 50px;
@@ -14,6 +13,7 @@
 }
 
 .selection-card__title {
+    letter-spacing: 0.1rem;
 }
 .selection-card__description {
     opacity: 0.9;
@@ -46,23 +46,22 @@
     background: linear-gradient(90deg, #2b86c5 0%, #562b7c 52%, #ff3cac 100%);
 }
 
+@media only screen and (max-width: 1024px) {
+    .selection-card {
+        padding: 35px;
+    }
+}
+
 @keyframes shake {
     from {
         transform: translateY(0px);
     }
-
     25% {
         transform: translateY(-5px);
     }
-
-    50% {
-        transform: translateY(0px);
-    }
-
     75% {
         transform: translateY(5px);
     }
-
     to {
         transform: translateY(0px);
     }

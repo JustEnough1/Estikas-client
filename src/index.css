@@ -4,6 +4,7 @@
     --blue: #3f70ee;
     --black: #252525;
     --white: #fbfbfb;
+    --danger: #ee3f4b;
 
     font-family: "Inter", sans-serif;
 }
@@ -12,6 +13,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+*::-webkit-scrollbar {
+    display: none;
 }
 
 html,
@@ -54,7 +59,7 @@ h4 {
 h5 {
     font-size: 1.5625rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 120%;
 }
 h6 {
@@ -68,6 +73,11 @@ i.bi {
     font-size: 2em;
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+}
+
 .logo {
     filter: grayscale(1);
     transition: all 0.5s;
@@ -79,4 +89,8 @@ i.bi {
 .focus > *:focus {
     z-index: 1;
     box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.3);
+}
+
+.primary-text {
+    color: var(--blue);
 }
