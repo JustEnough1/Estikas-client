@@ -4,7 +4,7 @@ import "./FlashCard.css";
 interface IFlashCardProps {
     text: TextWithTranslations;
     subtext?: string;
-    onClick: Function;
+    onClick?: Function;
 }
 export default function FlashCard({
     text,
@@ -29,13 +29,17 @@ export default function FlashCard({
         }, 500);
     };
 
+    useEffect(() => {
+        setCurrentWord(text.estonian);
+    }, [text]);
+
     return (
         <div
             onClick={() => {
                 if (isAnimating) return;
                 resetAnimation();
                 changeTranslation();
-                onClick();
+                onClick && onClick();
             }}
             className={`flashcard d-flex flex-column align-items-center justify-content-center ${
                 isAnimating ? "card-flip-animation" : ""

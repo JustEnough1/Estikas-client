@@ -4,18 +4,12 @@ import Tag from "../tag/Tag";
 import "./SelectionCard.css";
 
 interface ISelectionCardProps {
-    title: string;
-    level: "easy" | "medium" | "hard";
-    description: string;
-    tags?: string[];
+    selection: WordSelection;
 }
 
-export default function SelectionCard({
-    title,
-    description,
-    level,
-    tags,
-}: ISelectionCardProps) {
+export default function SelectionCard({ selection }: ISelectionCardProps) {
+    const { title, tags, description, level } = selection;
+
     return (
         <div
             className={`selection-card selection-card--${level} d-flex flex-column justify-content-center`}

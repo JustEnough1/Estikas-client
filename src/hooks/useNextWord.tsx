@@ -1,39 +1,71 @@
 import React, { useEffect, useState } from "react";
 
-export default function useNextWord(wordList: TextWithTranslations[]) {
-    let [currentWord, setCurrentWord] = useState(wordList[0]);
-    let [currentWordList, setCurrentWordList] =
-        useState<TextWithTranslations[]>(wordList);
+/**
+ * Returns the current word, method to get the next word and remembered words count.
+ * @param wordList - Selection of words
+ */
+export default function useNextWord(wordList: {
+    currentSelection: TextWithTranslations[];
+    nextSelection: () => void;
+}) {
+    let [currentWord, setCurrentWord] = useState<TextWithTranslations | null>(
+        wordList.currentSelection[0]
+    );
+    let [currentSelection, setCurrentSelection] = useState([
+        ...wordList.currentSelection,
+    ]);
+    let [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+    // Обновляем подборку слов
+    useEffect(() => {
+        if (wordList.currentSelection.length === 0) {
+            setCurrentWord(null);
+        } else {
+            setCurrentSelection([...wordList.currentSelection]);
+            setCurrentWord(wordList.currentSelection[0]);
+        }
+        return () => {};
+    }, [wordList.currentSelection]);
 
     useEffect(() => {
-        setCurrentWordList(wordList);
-        setCurrentWord(wordList[0]);
+        if (!(currentSelection.length === 0)) return;
+        wordList.nextSelection();
+
         return () => {};
-    }, [wordList]);
+    }, [currentSelection]);
 
-    const nextWord = (remembered: boolean) => {
-        setCurrentWordList((prevWordList) => {
-            const updatedWordList = remembered
-                ? prevWordList.filter((word) => word !== currentWord)
-                : [...prevWordList];
+    // Удаляем запомненое слово
+    const removeWordFromSelection = () => {
+        const temp = [...currentSelection];
+        temp.splice(currentWordIndex, 1);
 
-            const currentIndex = updatedWordList.indexOf(currentWord);
+        if (currentWordIndex === temp.length) {
+            setCurrentWord(temp[0]);
+            setCurrentWordIndex(0);
+        } else {
+            setCurrentWord(temp[currentWordIndex]);
+        }
 
-            const nextIndex =
-                updatedWordList.length > 0
-                    ? (currentIndex + 1) % updatedWordList.length
-                    : 0;
-
-            const nextWord =
-                nextIndex < updatedWordList.length
-                    ? updatedWordList[nextIndex]
-                    : updatedWordList[0];
-
-            if (nextWord) setCurrentWord(nextWord);
-
-            return updatedWordList;
-        });
+        setCurrentSelection([...temp]);
     };
 
-    return { currentWord, nextWord };
+    // Устанавливаем следующее слово
+    const nextWord = (remembered: boolean) => {
+        if (remembered) return removeWordFromSelection();
+
+        if (currentWordIndex + 1 < currentSelection.length) {
+            setCurrentWord(currentSelection[currentWordIndex + 1]);
+            setCurrentWordIndex(currentWordIndex + 1);
+        } else {
+            setCurrentWord(currentSelection[0]);
+            setCurrentWordIndex(0);
+        }
+    };
+
+    return {
+        currentWord,
+        nextWord,
+        rememberedWordsCount:
+            wordList.currentSelection.length - currentSelection.length,
+    };
 }

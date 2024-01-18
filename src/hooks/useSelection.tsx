@@ -1,8 +1,13 @@
 import { useState } from "react";
 
-export function useSelection(
+/**
+ * Returns an array of word arrays
+ * @param wordList - Array of words
+ * @param selectionSize - Number of words in each selection
+ */
+export default function useSelection(
     wordList: TextWithTranslations[],
-    selectionSize: number = 5
+    selectionSize: number = 10
 ) {
     // Разбиваем исходный список на подборки слов
     const selectionsList: TextWithTranslations[][] = [];

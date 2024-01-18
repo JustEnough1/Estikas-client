@@ -24,3 +24,13 @@
 .quiz__footer * {
     height: 100%;
 }
+
+.quiz .solved-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quiz .solved-modal button {
+    margin-top: 50px;
+}
