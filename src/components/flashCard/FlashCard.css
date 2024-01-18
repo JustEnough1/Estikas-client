@@ -1,0 +1,40 @@
+.flashcard {
+    background: #fff;
+    width: 100%;
+    padding: 3.125rem 6.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid #f1f1f1;
+}
+.flashcard__text {
+    color: var(--black);
+    font-weight: 500;
+    font-size: 3rem;
+    text-wrap: balance;
+    text-align: center;
+}
+.flashcard__subtext {
+    font-weight: 400;
+    color: #00000075;
+    white-space: nowrap;
+}
+.card-flip-animation {
+    animation: flip 1s ease-in-out;
+}
+
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .flashcard__text {
+        font-size: 2rem;
+    }
+}

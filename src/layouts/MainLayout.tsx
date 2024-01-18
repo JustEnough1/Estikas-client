@@ -1,39 +1,37 @@
-import React, { ReactNode } from "react";
-import NavigationPanel from "../components/NavigationPanel";
+import React, { ReactNode, useState } from "react";
+import Sidebar from "../components/sidebar/Sidebar";
+import Overlay from "../components/overlay/Overlay";
 
 import "./MainLayout.css";
 
 interface IMainLayoutProps {
-    headerTitle: string;
-    headerIconClassName: string;
-    currentNavigationTab: "home" | "profile" | "settings";
     children: ReactNode;
 }
 
-export default function MainLayout({
-    headerTitle,
-    headerIconClassName,
-    currentNavigationTab,
-    children,
-}: IMainLayoutProps) {
+export default function MainLayout({ children }: IMainLayoutProps) {
+    let [sidebarIsVisible, setSidebarIsVisible] = useState(false);
+    let [showOverlay, setShowOverlay] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarIsVisible(!sidebarIsVisible);
+        setShowOverlay(!showOverlay);
+    };
+
     return (
         <div className="container main-layout">
-            <div className="row main-layout-header">
-                <div className="col-12">
-                    <header className="d-flex flex-column align-items-center justify-content-center">
-                        <i className={headerIconClassName}></i>
-                        <h2>{headerTitle}</h2>
-                    </header>
-                </div>
+            <div className="row main-layout__header">
+                <nav>
+                    <i className="bi bi-list" onClick={toggleSidebar}></i>
+
+                    <Sidebar
+                        toggleVisibility={toggleSidebar}
+                        isVisible={sidebarIsVisible}
+                    />
+                </nav>
             </div>
-            <div className="row main-layout-body">
-                <div className="col-12 ">{children}</div>
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    <NavigationPanel currentTab={currentNavigationTab} />
-                </div>
-            </div>
+            {showOverlay && <Overlay />}
+
+            {children}
         </div>
     );
 }

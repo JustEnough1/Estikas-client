@@ -1,0 +1,19 @@
+.input {
+    position: relative;
+
+    display: flex;
+    padding: 0.9375rem 1.5625rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    font-size: 20px;
+    text-align: center;
+}
+
+.input:focus {
+    outline: 0;
+
+    transform: scale(1.03);
+    transition: all 0.5s ease-in-out;
+}

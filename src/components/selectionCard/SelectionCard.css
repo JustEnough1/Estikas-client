@@ -1,0 +1,68 @@
+.selection-card {
+    cursor: pointer;
+    padding: 3.125rem 1.5625rem;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    color: white;
+    gap: 32px;
+    padding: 50px;
+}
+
+.selection-card:hover {
+    animation: shake 0.4s ease-in-out;
+}
+
+.selection-card__title {
+    letter-spacing: 0.1rem;
+}
+.selection-card__description {
+    opacity: 0.9;
+}
+.selection-card__tags {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.selection-card--easy {
+    background: linear-gradient(90deg, #473b7b 0%, #3584a7 51%, #30d2be 100%);
+}
+.selection-card--medium {
+    background: linear-gradient(
+        90deg,
+        #3f51b1 0%,
+        #5a55ae 13%,
+        #7b5fac 25%,
+        #8f6aae 38%,
+        #a86aa4 50%,
+        #cc6b8e 62%,
+        #f18271 75%,
+        #f3a469 87%,
+        #f7c978 100%
+    );
+}
+
+.selection-card--hard {
+    background: linear-gradient(90deg, #2b86c5 0%, #562b7c 52%, #ff3cac 100%);
+}
+
+@media only screen and (max-width: 1024px) {
+    .selection-card {
+        padding: 35px;
+    }
+}
+
+@keyframes shake {
+    from {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(-5px);
+    }
+    75% {
+        transform: translateY(5px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}

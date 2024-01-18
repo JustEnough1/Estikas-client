@@ -1,0 +1,9 @@
+.toolbar {
+    display: flex;
+}
+
+.toolbar input,
+.toolbar button {
+    width: 100%;
+    height: 100%;
+}

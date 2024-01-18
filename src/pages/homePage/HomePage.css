@@ -1,0 +1,7 @@
+.selections-group {
+    overflow-x: scroll;
+}
+
+.selections-group .selection-card {
+    height: 100%;
+}

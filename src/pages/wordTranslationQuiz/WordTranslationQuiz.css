@@ -1,0 +1,36 @@
+.quiz {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-wrap: nowrap;
+}
+.quiz__header {
+    text-align: center;
+}
+
+.quiz__header .word-coutner h6 {
+    font-weight: 300;
+    letter-spacing: 0.12rem;
+}
+
+.quiz__body {
+    flex: 1;
+}
+.quiz__footer {
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.quiz__footer * {
+    height: 100%;
+}
+
+.quiz .solved-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quiz .solved-modal button {
+    margin-top: 50px;
+}

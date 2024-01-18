@@ -1,0 +1,6 @@
+.tag {
+    border: 1px solid white;
+    border-radius: 8px;
+    width: fit-content;
+    text-wrap: nowrap;
+}
